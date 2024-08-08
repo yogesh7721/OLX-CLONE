@@ -93,14 +93,14 @@ exports.getLocation = asyncHandler(async (req, res) => {
 exports.addPost = asyncHandler(async (req, res) => {
 
     upload(req, res, async (err) => {
-        const { title, desc, price, location, images,category } = req.body
+        const { title, desc, price, location,category } = req.body
         const { error, isError } = checkEmpty({ title, desc, price, location, category })
         if (isError) {
             return res.status(400).json({ message: "All Fields Required" })
         }
         console.log(req.files,)
 
-       await Posts.create({ title, desc, price, images, location, user: req.loggedInUser, category })
+    //    await Posts.create({ title, desc, price, images, location, user: req.loggedInUser, category })
         res.json({ message: "Post Create Successs" })
     })
 })
